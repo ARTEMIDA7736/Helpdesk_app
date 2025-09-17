@@ -1,33 +1,31 @@
-# HelpDesk FastAPI App (example)
+# Приложение HelpDesk на FastAPI (пример)
 
-This small application implements a HelpDesk backend with:
-- SQLAlchemy models: User, Ticket, Category, Status, Priority, Comment
-- JWT-based authentication (token endpoint at `/token`)
-- Endpoints:
-  - `POST /signup` – register a user. Returns 201.
-  - `POST /token` – login (form data: username=email, password). Returns JWT token.
-  - `GET /users` – list users (requires auth).
-  - `GET /tickets` – list tickets (requires auth).
-  - `POST /tickets` – create ticket (requires auth).
-  - `GET /tickets/{id}` – get ticket by id (requires auth).
-  - `PUT /tickets/{id}` – update ticket (requires auth; creator/agent/admin).
-  - `DELETE /tickets/{id}` – delete ticket (requires auth; creator/admin).
-  - `POST /tickets/{id}/comments` – add comment to ticket (requires auth).
+Это небольшое приложение реализует бэкенд для системы HelpDesk с использованием:
 
-Response codes used: 200, 201, 400, 401, 404, 500 where appropriate.
+- Моделей SQLAlchemy: Пользователь (User), Заявка (Ticket), Категория (Category), Статус (Status), Приоритет (Priority), Комментарий (Comment)
+- Аутентификации на основе JWT (точка получения токена — `/token`)
+- Эндпоинтов:
+  - `POST /signup` — регистрация пользователя. Возвращает 201.
+  - `POST /token` — вход (данные формы: username=email, password). Возвращает JWT-токен.
+  - `GET /users` — список пользователей (требуется авторизация).
+  - `GET /tickets` — список заявок (требуется авторизация).
+  - `POST /tickets` — создание заявки (требуется авторизация).
+  - `GET /tickets/{id}` — получение заявки по ID (требуется авторизация).
+  - `PUT /tickets/{id}` — обновление заявки (требуется авторизация; доступно создателю, агенту или администратору).
+  - `DELETE /tickets/{id}` — удаление заявки (требуется авторизация; доступно создателю или администратору).
+  - `POST /tickets/{id}/comments` — добавление комментария к заявке (требуется авторизация).
 
-## Run locally
+Используемые коды ответов: 200, 201, 400, 401, 404, 500 — в зависимости от ситуации.
 
-1. Create virtual env and install requirements:
+## Запуск локально
+
+1. Создайте виртуальное окружение и установите зависимости командой:
 ```
-pip install -r requirements.txt
-```
-2. Run server:
-```
-uvicorn main:app --reload
-```
-3. Open docs: http://127.0.0.1:8000/docs
+   pip install -r requirements.txt
 
-## Notes
-- This is a small demo; in production change SECRET_KEY, use migrations, improve error handling and permissions.
-- The DB is SQLite file `helpdesk.db` created in the working directory.
+```
+2. Запустить сервер командой:
+```
+uvicorn main:app 
+```
+3. Открыть документацию по ссылке: http://127.0.0.1:8000/docs
